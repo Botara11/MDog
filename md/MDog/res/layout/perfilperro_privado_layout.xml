@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent" >
+        
+        <LinearLayout
+    android:focusable="true" android:focusableInTouchMode="true"
+    android:layout_width="0px" android:layout_height="0px"/>
+        
+       
+
+        <TabHost
+            android:id="@android:id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:tabStripEnabled="true" >
+                </TabWidget>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <FrameLayout
+                        android:id="@+id/tabperfilperroprivado"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+                        
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#F0F0F0" >
+                            
+                            <ScrollView 
+   								 android:layout_width="fill_parent"
+    							 android:layout_height="fill_parent"
+    							 android:layout_above="@+id/linearaceptarcancelar"
+    						>
+                            
+                            <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/linearaceptarcancelar"
+                             >
+							
+                            
+                            <RelativeLayout
+                                android:id="@+id/LinearLayoutcuadro"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/park1"
+                                android:orientation="vertical" >
+
+                                <EditText
+                                    android:id="@+id/Nombre"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:background="#00000000"
+                                    android:focusableInTouchMode="false"
+                                    android:gravity="center"
+                                    android:hint="Nombre"
+                                    android:inputType="textPersonName"
+                                    android:text="Lassie"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="@color/white"
+                                    android:textIsSelectable="false"
+                                    android:textSize="30sp" />
+
+                                <EditText
+                                    android:id="@+id/textRaza"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/Nombre"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="5dp"
+                                    android:background="#00000000"
+                                    android:clickable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:gravity="center"
+                                    android:hint="Raza"
+                                    android:inputType="textEmailAddress"
+                                    android:onClick="onClickRazas"
+                                    android:text="Akita Inu"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="@color/white"
+                                    android:textIsSelectable="false"
+                                    android:textSize="20sp" />
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayouticonos"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_below="@+id/LinearLayoutcuadro"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical" >
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" >
+
+                                    <RelativeLayout
+                                        android:id="@+id/relativeLayout1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" >
+                                    </RelativeLayout>
+
+                                    <Button
+                                        android:id="@+id/buttonEditar"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_marginBottom="1dp"
+                                        android:layout_marginRight="3dp"
+                                        android:background="@drawable/button_gplus_gb"
+                                        
+                                        android:paddingLeft="5dp"
+                                        android:paddingRight="5dp"
+                                        android:text="Editar Perfil"
+                                        android:textColor="@color/white"
+                                        android:textSize="12sp" />
+
+                                    <ImageView
+                                        android:id="@+id/genero"
+                                        android:layout_width="27dp"
+                                        android:layout_height="27dp"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_toLeftOf="@+id/buttonEditar"
+                                        android:background="@drawable/macho" />
+
+                                    <EditText
+                                        android:id="@+id/textEdad"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="13dp"
+                                        android:layout_toRightOf="@+id/Adorable"
+                                        android:background="@null"
+                                      
+                                        android:focusable="false"
+                                        android:inputType="textPersonName"
+                                        android:text="X años"
+                                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                    <EditText
+                                        android:id="@+id/NumeroAdorables"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/genero"
+                                        android:layout_toLeftOf="@+id/textEdad"
+                                        android:background="@null"
+                                        android:ems="10"
+                                        android:focusable="false"
+                                        android:inputType="textPersonName"
+                                        android:text="0"
+                                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                    <ImageView
+                                        android:id="@+id/Adorable"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_toRightOf="@+id/relativeLayout1"
+                                        android:contentDescription="@string/app_name"
+                                        android:src="@drawable/lovely" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:layout_below="@+id/LinearLayoutcuadro"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout1"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignLeft="@+id/LinearLayoutfoto"
+                                android:layout_alignRight="@+id/LinearLayoutfoto"
+                                android:layout_below="@+id/LinearLayoutfoto"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout3"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_below="@+id/LinearLayouticonos"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayoutfoto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="80dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical" >
+
+                                <ImageView
+                                    android:id="@+id/ImageViewFotoPeRRo"
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_margin="2dp"
+                                    android:layout_marginLeft="0dp"
+                                    android:contentDescription="desc"
+                                    android:src="@drawable/sombra_perro" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/AficionesTab"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_below="@+id/LinearLayoutfoto"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="25dp"
+                                android:background="@drawable/tab_redondeado"
+                                android:text="Aficiones"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout2"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignLeft="@+id/LinearLayout01"
+                                android:layout_alignRight="@+id/LinearLayout01"
+                                android:layout_below="@+id/LinearLayout01"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout4"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignLeft="@+id/LinearLayout06"
+                                android:layout_alignRight="@+id/LinearLayout06"
+                                android:layout_below="@+id/LinearLayout06"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/TextView04"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
+                                android:layout_above="@+id/LinearLayout06"
+                                android:layout_alignTop="@+id/EditText06"
+                                android:layout_toRightOf="@+id/EditText06"
+                                android:background="@drawable/tab_redondeado"
+                                android:text="A"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextView03"
+                                android:layout_width="30dp"
+                                android:layout_height="25dp"
+                                android:layout_above="@+id/LinearLayout06"
+                                android:layout_alignLeft="@+id/TextView04"
+                                android:background="@drawable/tab_redondeo_inferior"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/EditText06"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/linearLayout2"
+                                android:layout_below="@+id/linearLayout2"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/tab_redondeado"
+                                android:editable="false"
+                                android:text="Personalidad"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayout06"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/EditText06"
+                                android:layout_below="@+id/EditText06"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/Personalidad"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="#ffffff"
+                                    android:focusableInTouchMode="false"
+                                    android:hint="Escribe sobre su personalidad"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textIsSelectable="false"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayout01"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/AficionesTab"
+                                android:layout_below="@+id/AficionesTab"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/Aficiones"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#ffffff"
+                                    android:nextFocusUp="@id/Aficiones" 
+                                    android:nextFocusLeft="@id/Aficiones"
+                                    android:focusableInTouchMode="false"
+                                    android:hint="Escribe sobre sus aficiones"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textIsSelectable="false"
+                                    android:textSize="16sp" >
+
+                                    
+                                </EditText>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/TextView01"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
+                                android:layout_above="@+id/LinearLayout01"
+                                android:layout_alignTop="@+id/AficionesTab"
+                                android:layout_toRightOf="@+id/AficionesTab"
+                                android:background="@drawable/tab_redondeado"
+                                android:text="A"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextView02"
+                                android:layout_width="30dp"
+                                android:layout_height="25dp"
+                                android:layout_alignBottom="@+id/AficionesTab"
+                                android:layout_toRightOf="@+id/AficionesTab"
+                                android:background="@drawable/tab_redondeo_inferior"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+                           
+							</RelativeLayout>
+                             </ScrollView>
+                                <LinearLayout
+                                    android:id="@+id/linearaceptarcancelar"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:orientation="vertical"
+                                    android:layout_alignParentBottom="true"
+                                    
+                                    
+                                     >
+                                
+                                    
+                                    <TableRow
+                                android:id="@+id/TableRowPerroPrivado"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/red"
+                                android:gravity="center_horizontal"
+                                android:visibility="invisible" >
+
+                                <Button
+                                    android:id="@+id/cancelarPerroPrivado"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/red"
+                                    android:gravity="center"
+                                    android:padding="5dip"
+                                    android:text="Cancelar"
+                                    android:textColor="@color/white" />
+
+                                <View
+                                    android:layout_width="1dip"
+                                    android:layout_height="fill_parent"
+                                    android:layout_margin="10dp"
+                                    android:background="#000000" />
+
+                                <Button
+                                    android:id="@+id/AceptarPerroPrivado"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/red"
+                                    android:gravity="center"
+                                    android:padding="5dip"
+                                    android:text="Aceptar"
+                                    android:textColor="@color/white" />
+                            </TableRow>
+                                
+                                </LinearLayout>
+
+                            
+
+                        </RelativeLayout>
+                        
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/tabcartilla"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#F0F0F0" >
+                                
+                            <ScrollView 
+   								 android:layout_width="fill_parent"
+    							 android:layout_height="fill_parent"
+    							 android:layout_above="@+id/linearaceptarcancelarcartilla"
+    						>
+                                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#F0F0F0" >
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayoutfechaultvac"
+                                android:layout_width="213dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/EditTextultvac"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/editTextfechaultvac"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:focusableInTouchMode="false"
+                                    android:hint="dd/mm/aaaa"
+                                    android:inputType="date"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:textIsSelectable="false" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayouttipoultvac"
+                                android:layout_width="213dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/LinearLayoutfechaultvac"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/EditTexttipoultvac"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:editable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:hint="Tipo de vacuna"
+                                    android:inputType="textPersonName"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/EditTextproxvac"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/LinearLayouttipoultvac"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/tab_redondeado"
+                                android:editable="false"
+                                android:text="Próxima vacuna"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayoutfechaproxvac"
+                                android:layout_width="213dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/EditTextproxvac"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/EditTextfechaproxvac"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:editable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:hint="dd/mm/aaaa"
+                                    android:inputType="date"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:textIsSelectable="false" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayouttipoproxvac"
+                                android:layout_width="213dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/LinearLayoutfechaproxvac"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/EditTexttipoproxvac"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:editable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:hint="Tipo de vacuna"
+                                    android:inputType="textPersonName"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:textIsSelectable="false" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/EditTextanti"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/LinearLayouttipoproxvac"
+                                android:layout_below="@+id/LinearLayouttipoproxvac"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/tab_redondeado"
+                                android:editable="false"
+                                android:text="Próxima antiparasitaria"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayoutanti"
+                                android:layout_width="213dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/EditTextanti"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/EditTextfechaproxanti"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:editable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:hint="dd/mm/aaaa"
+                                    android:inputType="date"
+                                    android:textAppearance="?android:attr/textAppearanceSmall"
+                                    android:textIsSelectable="false" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/EditTextultvac"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="0dp"
+                                android:layout_marginTop="17dp"
+                                android:background="@drawable/tab_redondeado"
+                                android:editable="false"
+                                android:text="Última vacuna"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <EditText
+                                android:id="@+id/EditTextchip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/LinearLayoutanti"
+                                android:layout_below="@+id/LinearLayoutanti"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/tab_redondeado"
+                                android:editable="false"
+                                android:text="Número de chip"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayout05"
+                                android:layout_width="213dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/EditTextchip"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical"
+                                android:padding="10dp" >
+
+                                <EditText
+                                    android:id="@+id/EditTextnumchip"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00000000"
+                                    android:editable="false"
+                                    android:hint="1234567890"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/TextViewA"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
+                                android:layout_above="@+id/LinearLayoutfechaultvac"
+                                android:layout_alignTop="@+id/EditTextultvac"
+                                android:layout_marginRight="52dp"
+                                android:layout_toRightOf="@+id/EditTextultvac"
+                                android:background="@drawable/tab_redondeado"
+                                android:text="A"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextViewB"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
+                                android:layout_above="@+id/LinearLayoutfechaproxvac"
+                                android:layout_alignTop="@+id/EditTextproxvac"
+                                android:layout_toRightOf="@+id/EditTextproxvac"
+                                android:background="@drawable/tab_redondeado"
+                                android:text="A"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextViewC"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
+                                android:layout_alignBottom="@+id/EditTextanti"
+                                android:layout_alignTop="@+id/EditTextanti"
+                                android:layout_toRightOf="@+id/EditTextanti"
+                                android:background="@drawable/tab_redondeado"
+                                android:text="A"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextViewD"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
+                                android:layout_above="@+id/LinearLayout05"
+                                android:layout_alignTop="@+id/EditTextchip"
+                                android:layout_toRightOf="@+id/EditTextchip"
+                                android:background="@drawable/tab_redondeado"
+                                android:text="A"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextView05"
+                                android:layout_width="30dp"
+                                android:layout_height="25dp"
+                                android:layout_above="@+id/LinearLayoutfechaultvac"
+                                android:layout_alignLeft="@+id/TextViewA"
+                                android:background="@drawable/tab_redondeo_inferior"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextView06"
+                                android:layout_width="30dp"
+                                android:layout_height="25dp"
+                                android:layout_alignBottom="@+id/TextViewB"
+                                android:layout_alignLeft="@+id/TextViewB"
+                                android:background="@drawable/tab_redondeo_inferior"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextView07"
+                                android:layout_width="30dp"
+                                android:layout_height="25dp"
+                                android:layout_alignBottom="@+id/TextViewC"
+                                android:layout_alignLeft="@+id/TextViewC"
+                                android:background="@drawable/tab_redondeo_inferior"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <TextView
+                                android:id="@+id/TextView08"
+                                android:layout_width="30dp"
+                                android:layout_height="25dp"
+                                android:layout_above="@+id/LinearLayout05"
+                                android:layout_toRightOf="@+id/EditTextchip"
+                                android:background="@drawable/tab_redondeo_inferior"
+                                android:textColor="@color/white"
+                                android:textIsSelectable="false" />
+
+                            <Button
+                                android:id="@+id/buttonEditarCartilla"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentTop="true"
+                               
+                                android:layout_marginRight="3dp"
+                                android:background="@drawable/button_gplus_gb"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
+                                android:text="Editar Perfil"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+                            
+                            </RelativeLayout> 
+                            </ScrollView>
+                            
+                            
+                            
+                            <LinearLayout
+                                    android:id="@+id/linearaceptarcancelarcartilla"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:orientation="vertical"
+                                    android:layout_alignParentBottom="true"
+                                    
+                                    
+                                     >
+                                
+                                    
+                                    <TableRow
+                                android:id="@+id/TableRowPerroPrivadoCartilla"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:background="@color/red"
+                                android:gravity="center_horizontal"
+                                android:visibility="invisible" >
+
+                                <Button
+                                    android:id="@+id/cancelarPerroPrivadoCartilla"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/red"
+                                    android:gravity="center"
+                                    android:padding="5dip"
+                                    android:text="Cancelar"
+                                    android:textColor="@color/white" />
+
+                                <View
+                                    android:layout_width="1dip"
+                                    android:layout_height="fill_parent"
+                                    android:layout_margin="10dp"
+                                    android:background="#000000" />
+
+                                <Button
+                                    android:id="@+id/AceptarPerroPrivadoCartilla"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/red"
+                                    android:gravity="center"
+                                    android:padding="5dip"
+                                    android:text="Aceptar"
+                                    android:textColor="@color/white" />
+                            </TableRow>
+                                
+                                </LinearLayout>
+
+                        </RelativeLayout>
+                    </FrameLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+    </RelativeLayout>
+
+
+

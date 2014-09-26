@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>
+            <solid
+                 android:background="@drawable/retiro" 
+                android:color="#1100006f" />
+            
+            
+        </shape>
+    </item>    
+    <item>
+        <solid
+                 android:background="@drawable/retiro" 
+                 />
+            
+                
+            
+            
+        
+    </item>    
+    </selector>

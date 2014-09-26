@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/spin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <ScrollView
+            android:id="@+id/scrollId"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/button1" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="top"
+                    android:hint=" ¿Qué tienes en mente?"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/fotoPublicar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/EditText"
+                    android:layout_margin="10dp"
+                    android:contentDescription="Imagen a publicar" />
+
+                <Button
+                    android:id="@+id/xbutton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignRight="@+id/fotoPublicar"
+                    android:layout_alignTop="@+id/fotoPublicar"
+                    android:background="@drawable/ic_action_cancel" />
+            </RelativeLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_gplus_gb"
+            android:text="Publicar"
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_alignTop="@+id/button1"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageButton1"
+            android:background="@color/facebook"
+            android:src="@drawable/icon_facebook" />
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/imageButton2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/imageButton2"
+            android:layout_marginLeft="10dp"
+            android:background="@color/gplus"
+            android:src="@drawable/icon_gplus" />
+    </RelativeLayout>
+
+</LinearLayout>

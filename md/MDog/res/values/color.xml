@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>     
+    <color name="black">#000000</color> 
+    <color name="white">#ffffff</color>
+    <color name="orange">#E65F00</color>
+    <color name="grey">#7a7a7a</color>
+    <color name="greylight">#c2c2c2</color>
+    <color name="green">#99ff33</color>
+    <color name="red">#FF0000</color>
+    <color name="rose">#FF6666</color>
+    <color name="gplus">#Ef4444</color>
+    <color name="facebook">#2372a3</color>
+    <color name="word_bar">#FF0000</color>
+    <color name="number_bar">#00FF00</color>
+</resources>
+

@@ -1,0 +1,9 @@
+En esta version funciona todo
+excepto que cuando abres el mapa 2 veces 
+el mapa peta al tratar de “inflater”
+el problema también se puede encontrar aquí en stackoverflow:
+
+
+http://stackoverflow.com/questions/13905977/android-map-v2-error-on-second-inflating
+
+20.42

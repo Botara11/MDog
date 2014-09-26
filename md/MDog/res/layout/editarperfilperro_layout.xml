@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tabStripEnabled="true" >
+
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <FrameLayout
+					android:id="@+id/tabperfilperroprivadoeditar"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent" >
+					
+                   <RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dog_prints" >
+     
+    <Button
+        android:id="@+id/buttoneditarperfilperro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_gplus_gb"
+        android:text="Guardar" 
+        android:textColor="@color/white"
+        android:onClick="onclickguardar"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/LinearLayout04"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:background="@drawable/linearregistro"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <Button
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText1"
+            android:layout_centerHorizontal="true"
+            android:background="#00000000"
+            android:ems="10"
+            android:hint="Raza"
+            android:inputType="textEmailAddress"
+            android:gravity="left"
+            android:onClick="onclickRaza" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout04"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/linearregistro"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/EditText05"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+             >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/linearregistro"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/EditText02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText1"
+            android:layout_centerHorizontal="true"
+            android:background="#00000000"
+            android:ems="10"
+            android:hint="Edad"
+            android:inputType="textEmailAddress"
+             />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/EditText01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/LinearLayout03"
+        android:layout_marginTop="50dp"
+        android:background="#00000000"
+        android:ems="10"
+        android:text="Aficiones"
+         />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/EditText01"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/linearregistro"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:hint="Pasear por la playa"
+            android:inputType="textPersonName"
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/LinearLayout01"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/linearregistro"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/EditText03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:hint="Tumbarse al lado de la chimenea"
+            android:inputType="textPersonName"
+             />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/EditText06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/LinearLayout02"
+        android:layout_marginTop="15dp"
+        android:background="#00000000"
+        android:ems="10"
+        android:text="Personalidad"
+         />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout06"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/EditText06"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/linearregistro"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/EditText04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:hint="Cariñoso, Besucón..."
+            android:inputType="textMultiLine"
+             />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/LinearLayout04"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/coocker" />
+
+</RelativeLayout>
+                    
+                    
+                </FrameLayout>
+
+                <FrameLayout
+					android:id="@+id/tabcartillaeditar"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent" >
+                    
+                     <RelativeLayout
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+
+                        android:background="@drawable/dog_prints" >
+
+
+
+                        
+
+                        <LinearLayout
+                            android:id="@+id/LinearLayoutfechaultvac"
+                            android:layout_width="213dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/EditTextultvac"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/linearregistro"
+                            android:orientation="vertical"
+                            android:padding="10dp" >
+
+                            <EditText
+
+                                android:id="@+id/editTextfechaultvac"
+
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+
+                                android:background="#00000000"
+
+                                android:hint="12/07/2014"
+
+                                android:inputType="date"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+
+                            android:id="@+id/LinearLayouttipoultvac"
+
+                            android:layout_width="213dp"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignParentLeft="true"
+
+                            android:layout_alignParentRight="true"
+
+                            android:layout_below="@+id/LinearLayoutfechaultvac"
+
+                            android:layout_marginLeft="10dp"
+
+                            android:layout_marginRight="10dp"
+
+                            android:layout_marginTop="0dp"
+
+                            android:background="@drawable/linearregistro"
+
+                            android:orientation="vertical"
+
+                            android:padding="10dp" >
+
+
+
+                            <EditText
+
+                                android:id="@+id/EditTexttipoultvac"
+
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+
+                                android:background="#00000000"
+
+                                android:hint="Tipo de vacuna"
+
+                                android:inputType="textPersonName"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </LinearLayout>
+
+
+
+                        <EditText
+
+                            android:id="@+id/EditTextproxvac"
+
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_below="@+id/LinearLayouttipoultvac"
+
+                            android:layout_marginLeft="10dp"
+
+                            android:layout_marginTop="15dp"
+
+                            android:background="#00000000"
+
+                            android:ems="10"
+
+                            android:text="Próxima vacuna"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+                        <LinearLayout
+
+                            android:id="@+id/LinearLayoutfechaproxvac"
+
+                            android:layout_width="213dp"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignParentLeft="true"
+
+                            android:layout_alignParentRight="true"
+
+                            android:layout_below="@+id/EditTextproxvac"
+
+                            android:layout_marginLeft="10dp"
+
+                            android:layout_marginRight="10dp"
+
+                            android:layout_marginTop="4dp"
+
+                            android:background="@drawable/linearregistro"
+
+                            android:orientation="vertical"
+
+                            android:padding="10dp" >
+
+
+
+                            <EditText
+
+                                android:id="@+id/EditTextfechaproxvac"
+
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+
+                                android:background="#00000000"
+
+                                android:hint="15/10/2014"
+
+                                android:inputType="date"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+
+                            android:id="@+id/LinearLayouttipoproxvac"
+
+                            android:layout_width="213dp"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignParentLeft="true"
+
+                            android:layout_alignParentRight="true"
+
+                            android:layout_below="@+id/LinearLayoutfechaproxvac"
+
+                            android:layout_marginLeft="10dp"
+
+                            android:layout_marginRight="10dp"
+
+                            android:layout_marginTop="0dp"
+
+                            android:background="@drawable/linearregistro"
+
+                            android:orientation="vertical"
+
+                            android:padding="10dp" >
+
+
+
+                            <EditText
+
+                                android:id="@+id/EditTexttipoproxvac"
+
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+
+                                android:background="#00000000"
+
+                                android:hint="Tipo de vacuna"
+
+                                android:inputType="textPersonName"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </LinearLayout>
+
+
+
+                        <EditText
+
+                            android:id="@+id/EditTextanti"
+
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignLeft="@+id/LinearLayouttipoproxvac"
+
+                            android:layout_below="@+id/LinearLayouttipoproxvac"
+
+                            android:layout_marginTop="15dp"
+
+                            android:background="#00000000"
+
+                            android:ems="10"
+
+                            android:text="Próxima antiparasitaria"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+                        <LinearLayout
+
+                            android:id="@+id/LinearLayoutanti"
+
+                            android:layout_width="213dp"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignParentLeft="true"
+
+                            android:layout_alignParentRight="true"
+
+                            android:layout_below="@+id/EditTextanti"
+
+                            android:layout_marginLeft="10dp"
+
+                            android:layout_marginRight="10dp"
+
+                            android:layout_marginTop="4dp"
+
+                            android:background="@drawable/linearregistro"
+
+                            android:orientation="vertical"
+
+                            android:padding="10dp" >
+
+
+
+                            <EditText
+
+                                android:id="@+id/EditTextfechaproxanti"
+
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+
+                                android:background="#00000000"
+
+                                android:hint="15/10/2014"
+
+                                android:inputType="date"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/EditTextultvac"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="17dp"
+                            android:background="#00000000"
+                            android:ems="10"
+                            android:text="Última vacuna"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        <EditText
+
+                            android:id="@+id/EditTextchip"
+
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignLeft="@+id/LinearLayoutanti"
+
+                            android:layout_below="@+id/LinearLayoutanti"
+
+                            android:layout_marginTop="15dp"
+
+                            android:background="#00000000"
+
+                            android:ems="10"
+
+                            android:text="Número de chip"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+                        <LinearLayout
+
+                            android:id="@+id/LinearLayout05"
+
+                            android:layout_width="213dp"
+
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignParentLeft="true"
+
+                            android:layout_alignParentRight="true"
+
+                            android:layout_below="@+id/EditTextchip"
+
+                            android:layout_marginLeft="10dp"
+
+                            android:layout_marginRight="10dp"
+
+                            android:layout_marginTop="4dp"
+
+                            android:background="@drawable/linearregistro"
+
+                            android:orientation="vertical"
+
+                            android:padding="10dp"
+                             >
+
+
+
+                            <EditText
+
+                                android:id="@+id/EditTextnumchip"
+
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+
+                                android:background="#00000000"
+
+                                android:hint="15201429872534"
+
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </LinearLayout>
+                    
+                        </RelativeLayout>
+
+
+                    
+                    
+                </FrameLayout>
+
+                
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+</RelativeLayout>

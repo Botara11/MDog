@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item
+        android:id="@+id/item_meses"
+        android:showAsAction="ifRoom|withText"
+        android:title=" menos de un año"
+        android:visible="true"/>
+ 
+    <item
+        android:id="@+id/item_edad_1"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 1 año"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_2"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 2 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_3"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 3 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_4"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 4 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_5"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 5 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_6"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 6 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_7"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 7 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_8"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 8 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_9"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 9 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_10"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 10 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_11"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 11 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_12"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 12 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_13"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 13 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_14"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 14 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_15"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 15 años"
+        android:visible="true"/>
+    
+    <item
+        android:id="@+id/item_edad_16"
+        android:showAsAction="ifRoom|withText"
+        android:title=" 16 años"
+        android:visible="true"/>
+ 
+</menu>

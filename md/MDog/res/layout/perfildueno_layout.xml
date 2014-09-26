@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#EFEFEF" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <FrameLayout
+                        android:id="@+id/tabperfildueno"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#F0F0F0" >
+
+                            <RelativeLayout
+                                android:id="@+id/LinearLayoutcuadro"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_alignParentRight="true"
+                                android:background="@drawable/park1"
+                                android:orientation="vertical" >
+
+                                <EditText
+                                    android:id="@+id/NombreDueno"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="#00000000"
+                                    android:focusableInTouchMode="false"
+                                    android:gravity="center"
+                                    android:hint="Nombre"
+                                    android:inputType="textPersonName"
+                                    android:text="Jessy"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="@color/white"
+                                    android:textIsSelectable="false"
+                                    android:textSize="30sp" >
+
+                                    <requestFocus />
+                                </EditText>
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayouticonos"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_below="@+id/LinearLayoutcuadro"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical" >
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" >
+
+                                    <RelativeLayout
+                                        android:id="@+id/relativeLayout1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" >
+                                    </RelativeLayout>
+
+                                    <EditText
+                                        android:id="@+id/textCiudad"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_centerVertical="true"
+                                        android:background="#00000000"
+                                        android:clickable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:gravity="center"
+                                        android:hint="Raza"
+                                        android:inputType="textEmailAddress"
+                                        android:text="Torrent"
+                                        android:textAppearance="?android:attr/textAppearanceSmall"
+                                        android:textColor="@color/black"
+                                        android:textIsSelectable="false"
+                                        android:textSize="16sp" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="3dp"
+                                android:layout_below="@+id/LinearLayoutcuadro"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout1"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignLeft="@+id/LinearLayoutfoto"
+                                android:layout_alignRight="@+id/LinearLayoutfoto"
+                                android:layout_below="@+id/LinearLayoutfoto"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/RelativeLayoutListViewPerros"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_below="@+id/LinearLayouticonos"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical" >
+
+                                <LinearLayout
+                                    android:id="@+id/linearLayoutListViewPerros"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/linearregistro"
+                                    android:orientation="vertical" >
+
+                                    <ListView
+                                        android:id="@+id/listViewPerrosDueno"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent" >
+                                    </ListView>
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/linearLayout3"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_below="@+id/LinearLayouticonos"
+                                android:background="@drawable/cuadro_muro_sombra"
+                                android:orientation="vertical" >
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/LinearLayoutfoto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="36dp"
+                                android:background="@drawable/linearregistro"
+                                android:orientation="vertical" >
+
+                                <ImageView
+                                    android:id="@+id/ImageViewFotoDueno"
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_margin="1dp"
+                                    android:layout_marginLeft="0dp"
+                                    android:contentDescription="desc"
+                                    android:src="@drawable/coocker" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/tabmurodueno"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/tabparquesdueno"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+                	</FrameLayout>
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/button_prin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_gplus_gb"
+                    android:text="Enviar Mensaje"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+        </LinearLayout>
+    </TabHost>
+
+</LinearLayout>

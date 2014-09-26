@@ -1,0 +1,134 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+
+         
+        <ImageView
+            android:id="@+id/foto"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/coocker" />
+    
+    <RelativeLayout
+        android:id="@+id/rel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/foto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/perfil_fondo_transparente" >
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="Odie Dobón"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <LinearLayout
+            android:id="@+id/group1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nombre"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp" >
+
+            <TextView
+                android:id="@+id/edad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/raza"
+                android:layout_alignLeft="@+id/centro"
+                android:layout_marginLeft="15dp"
+                android:text="2 años"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/centro"
+                android:layout_width="15dp"
+                android:layout_height="5dp"
+                android:layout_below="@+id/line1"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/genero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/raza"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/centro"
+                android:text="Macho"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/raza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/group1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:text="Coocker Spaniel"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
+        
+        <TextView
+            android:id="@+id/tamano1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/raza"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:text="Mediano"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tamano2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tamano1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text=" (12 a 25kg)"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
+       <TextView
+            android:id="@+id/hueco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tamano2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+<Button
+    android:id="@+id/button1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_margin="3dp"
+    android:background="@drawable/boton_rojo"
+    android:text="Editar"
+    android:onClick="botonEditarPerfil"
+    android:textColor="@color/white" />
+
+</RelativeLayout>
