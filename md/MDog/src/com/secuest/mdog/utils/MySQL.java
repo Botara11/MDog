@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import android.util.Log;
-import net.sourceforge.jtds.jdbc.*;
 
 public class MySQL {
 

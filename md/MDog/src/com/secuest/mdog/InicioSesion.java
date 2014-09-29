@@ -1,5 +1,7 @@
 package com.secuest.mdog;
 
+import java.io.ByteArrayOutputStream;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,7 +11,12 @@ import com.secuest.mdog.utils_MySql.UserFunctions;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +27,7 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class InicioSesion extends Activity {
 	// JSON Response node names
@@ -62,8 +70,15 @@ public class InicioSesion extends Activity {
 
 							// Clear all previous data in database
 							userFunction.logoutUser(getApplicationContext());
-							db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_EMAIL), json.getString(KEY_UID), json_user.getString(KEY_CREATED_AT));						
-							finish();
+							db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_EMAIL), json.getString(KEY_UID), json_user.getString(KEY_CREATED_AT));
+							
+							String str = json_user.getString("image");
+							System.out.println(str);
+							byte[] encodeByte = Base64.decode(str, Base64.DEFAULT);  
+			                Bitmap bmp = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);       
+			                final ImageView ima = (ImageView) findViewById(R.id.imagenTest);
+							ima.setImageBitmap(bmp);
+							//finish();
 						}else{
 							// Error in login
 							Log.d("MiTAG","Incorrect username/password");

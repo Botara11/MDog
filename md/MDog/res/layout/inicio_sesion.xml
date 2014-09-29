@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/hola" >
 
+    
+    
     <Button
         android:id="@+id/Registrate"
         android:layout_width="wrap_content"
@@ -24,6 +26,12 @@
         android:background="@color/gplus"
         android:text="Inicia sesión"
         android:textColor="@color/white" />
+    <ImageView 
+        android:id="@+id/imagenTest"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:src="@drawable/elpuig"
+        />
 
     <Button
         android:id="@+id/TeHasOlvidado"

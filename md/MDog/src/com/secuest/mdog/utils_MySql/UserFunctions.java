@@ -49,13 +49,14 @@ public class UserFunctions {
 	 * @param email
 	 * @param password
 	 * */
-	public JSONObject registerUser(String name, String email, String password){
+	public JSONObject registerUser(String name, String email, String password,String image){
 		// Building Parameters
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("tag", register_tag));
 		params.add(new BasicNameValuePair("name", name));
 		params.add(new BasicNameValuePair("email", email));
 		params.add(new BasicNameValuePair("password", password));
+		params.add(new BasicNameValuePair("image",image));
 		
 		// getting JSON Object
 		//JSONObject json = jsonParser.getJSONFromUrl(registerURL, params);    LLAMAR COMO EL DE ARRIBA

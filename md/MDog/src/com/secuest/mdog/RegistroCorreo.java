@@ -1,5 +1,6 @@
 package com.secuest.mdog;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import org.json.JSONException;
@@ -17,8 +18,12 @@ import com.secuest.mdog.utils_MySql.UserFunctions;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -72,8 +77,16 @@ public class RegistroCorreo extends Activity {
 				String name = nombre.getText().toString();
 				String mail = email.getText().toString();
 				String password = pass1.getText().toString();
+				
+					Drawable d = getResources().getDrawable(R.drawable.teckel); 
+					Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+					ByteArrayOutputStream stream = new ByteArrayOutputStream();
+					bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+					byte[] bitmapdata = stream.toByteArray();
+					String base64String = Base64.encodeToString(bitmapdata,Base64.DEFAULT);
+				System.out.println("Enviado a Registro:  "+base64String);
 				UserFunctions userFunction = new UserFunctions();
-				JSONObject json = userFunction.registerUser(name, mail, password);
+				JSONObject json = userFunction.registerUser(name, mail, password,base64String);
 				
 				// check for login response
 				try {
@@ -92,8 +105,7 @@ public class RegistroCorreo extends Activity {
 							// Launch Dashboard Screen
 							finish();
 						}else{
-							// Error in registration
-							//registerErrorMsg.setText("Error occured in registration");
+							System.out.println("Un peq error json");
 						}
 					}
 				} catch (JSONException e) {
