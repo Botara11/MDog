@@ -29,6 +29,7 @@
         <item>Citas</item>
         <item>Buscar perros cerca</item>
         <item>Adopcion</item>
+        
     </string-array>
     
     <string name="restablecer">Por favor, introduce tu dirección de correo electrónico y te enviaremos un mensaje para restablecer la contraseña.</string>

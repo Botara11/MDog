@@ -52,7 +52,8 @@ public class Muro extends ListFragment {
 		arrayPost.add(post);
 		arrayPost.add(nuevo);
 		arrayPost.add(post);
-
+		
+		//getIntent().getSerializableExtra("MyClass");
 		ArrayList<Lista_entrada> datos = new ArrayList<Lista_entrada>();  
 
 		for(int i=0;i<arrayPost.size();i++)
@@ -167,7 +168,7 @@ public class Muro extends ListFragment {
 		else if ((actual-min)<525600)
 			return ("Hace "+(int)((actual-min)/1440)+" dias");
 		else 
-			return ("Hace "+(int)((actual-min)/525600)+" a–os");
+			return ("Hace "+(int)((actual-min)/525600)+" aï¿½os");
 
 
 

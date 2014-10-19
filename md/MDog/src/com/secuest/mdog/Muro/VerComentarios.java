@@ -1,5 +1,6 @@
 package com.secuest.mdog.Muro;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,14 +16,21 @@ import com.secuest.mdog.Perfiles.PerfilPerro;
 import com.secuest.mdog.utils.Cache;
 import com.secuest.mdog.utils.Lista_adaptador;
 import com.secuest.mdog.utils.Lista_entrada;
+import com.secuest.mdog.Test;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -45,23 +53,66 @@ public class VerComentarios extends Activity{
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
-		ListView list = (ListView) findViewById(R.id.listviewComentarios);
+		final ListView list = (ListView) findViewById(R.id.listviewComentarios);
 		
 		
 		post = (Post) getIntent().getSerializableExtra("Post");
-		ArrayList<Lista_entrada> datos = new ArrayList<Lista_entrada>();
+		final ArrayList<Lista_entrada> datos = new ArrayList<Lista_entrada>();
 		
-		EditText coment = (EditText) findViewById(R.id.edittextComentario);
+		final EditText coment = (EditText) findViewById(R.id.edittextComentario);
 		
 		ImageButton send = (ImageButton) findViewById(R.id.botonSend);
-		if(send!=null)
-		send.setOnClickListener(new OnClickListener() {
+		
+		File cacheDir = getBaseContext().getCacheDir();
+		Test test = new Test(getResources(),cacheDir);
+		test.Load();
+		Dueno miUser = test.kate;
+		final String Nombre = miUser.getNick();
+		System.out.println("Imagen:"+miUser.getImage().toString()+":");
+		final int [] newImagePerfilDueno ={
+				R.drawable.una	
+		};
+		
+		
+		coment.addTextChangedListener(new TextWatcher() {
+		    @Override
+		    public void onTextChanged(CharSequence s, int start, int before,
+		            int count) {
+
+		    }
+
+		    @Override
+		    public void beforeTextChanged(CharSequence s, int start, int count,
+		            int after) {
+		        
+		    }
+
+
 			@Override
-			public void onClick(View v) {
+			public void afterTextChanged(Editable s) {
+				final Editable Comentario;
+				Comentario=coment.getText();
 				
 			}
 		});
-		ArrayList<PostComentario> arrayComentarios= post.getComentarios();
+
+		final ArrayList<PostComentario> arrayComentarios= post.getComentarios();
+		
+		
+		send.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				datos.add(new Lista_entrada(newImagePerfilDueno[0], 3, new String[]{ Nombre , null , coment.getText().toString()}));
+				mAdapter.notifyDataSetChanged();
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+	            coment.setText("");
+	            coment.setBackgroundColor(Color.argb(255, 255, 255, 255));
+	            //Intent intent = null;
+				//intent.putExtra("MyClass", arrayComentarios.size());
+				
+			}});
+		
 	
 		for(int i=0;i<arrayComentarios.size();i++)
 			datos.add(new Lista_entrada(arrayComentarios.get(i).getDueno().getImage(), 3, new String[]{ arrayComentarios.get(i).getDueno().getNick() , calcularTiempo(arrayComentarios.get(i).getDate()) , arrayComentarios.get(i).getComentario()}));
@@ -90,12 +141,7 @@ public class VerComentarios extends Activity{
 						String nom = ((Lista_entrada) entrada).getNombreImage();
 						ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imagen); 
 						if (imagen_entrada != null)
-							try {
-								imagen_entrada.setImageBitmap((new Cache()).cargarImagen(nom, getBaseContext()));
-							} catch (FileNotFoundException e) {
-								imagen_entrada.setImageResource(R.drawable.sombra_perro);
-								e.printStackTrace();
-							}
+							imagen_entrada.setImageResource(((Lista_entrada) entrada).get_idImagen());
 						
 					
 						
@@ -132,7 +178,7 @@ public class VerComentarios extends Activity{
 		else if ((actual-min)<525600)
 			return ("Hace "+(int)((actual-min)/1440)+" dias");
 		else 
-			return ("Hace "+(int)((actual-min)/525600)+" a–os");
+			return ("Hace "+(int)((actual-min)/525600)+" aï¿½os");
 
 
 

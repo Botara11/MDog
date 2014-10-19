@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.android.gms.internal.em;
-import com.secuest.mdog.Amigos.Amigos;
 import com.secuest.mdog.Logica.Dueno;
 import com.secuest.mdog.Logica.Parque;
 import com.secuest.mdog.Logica.Perro;
@@ -22,14 +20,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,8 +32,6 @@ import android.widget.EditText;
 
 public class RegistroCorreo extends Activity {
 	private static String KEY_SUCCESS = "success";
-	private static String KEY_ERROR = "error";
-	private static String KEY_ERROR_MSG = "error_msg";
 	private static String KEY_UID = "uid";
 	private static String KEY_NAME = "name";
 	private static String KEY_EMAIL = "email";
@@ -63,7 +56,7 @@ public class RegistroCorreo extends Activity {
 		
 		final EditText email = (EditText) findViewById(R.id.Email);
 		final EditText pass1 = (EditText) findViewById(R.id.Pass1);
-		final EditText pass2 = (EditText) findViewById(R.id.Pass2);
+		findViewById(R.id.Pass2);
 		final EditText nombre = (EditText) findViewById(R.id.Nombre);
 		final EditText ciudad = (EditText) findViewById(R.id.Ciudad);
 		
@@ -78,7 +71,7 @@ public class RegistroCorreo extends Activity {
 				String mail = email.getText().toString();
 				String password = pass1.getText().toString();
 				
-					Drawable d = getResources().getDrawable(R.drawable.teckel); 
+					Drawable d = getResources().getDrawable(R.drawable.jupiter); 
 					Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
 					ByteArrayOutputStream stream = new ByteArrayOutputStream();
 					bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);

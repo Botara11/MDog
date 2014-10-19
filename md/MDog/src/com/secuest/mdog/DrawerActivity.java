@@ -8,6 +8,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -47,6 +48,8 @@ import com.secuest.mdog.Muro.Muro;
 import com.secuest.mdog.Muro.Publicar;
 import com.secuest.mdog.Protectoras.Protectoras;
 import com.secuest.mdog.settings.Settings;
+import com.secuest.mdog.utils.Lista_adaptador;
+import com.secuest.mdog.utils.Lista_entrada;
 import com.secuest.mdog.utils.MySQL_SingIn;
 //import android.app.Fragment;
 import com.secuest.mdog.utils.RWFile;
@@ -62,7 +65,8 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 	protected static final int 	MODIFICAR_PERRO = 7;
 
 	private DrawerLayout mDrawerLayout;
-	private ListView mDrawerList;
+	private ListView List;
+	private Lista_adaptador mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private LinearLayout mDrawerLinear;
 	private int count = 0, antFragment =99;
@@ -88,7 +92,7 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerTitles = getResources().getStringArray(R.array.planets_array);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.left_drawer);
+		List = (ListView) findViewById(R.id.left_drawer);
 		mDrawerLinear =(LinearLayout)findViewById(R.id.drawer_view);
 		ImageButton settings = (ImageButton) findViewById(R.id.settings);
 		TextView accedeoregistrate = (TextView) findViewById(R.id.accedeoregistrate);
@@ -134,13 +138,95 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 		/****************************************************************************************************/
 		/****************************************************************************************************/
 		
+		ArrayList<Lista_entrada> datos = new ArrayList<Lista_entrada>();  
 		
 		
+		//mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+			//	R.layout.drawer_list_item, mDrawerTitles));
 		
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.drawer_list_item, mDrawerTitles));
-		if(isProtectora){
+		String[] sss = new String [mDrawerTitles.length+1];
+		for(int i=0;i<mDrawerTitles.length;i++){
+			
+			sss[i]=mDrawerTitles[i];
+		}
+		
+		int[] textureArrayWin = {
+				R.drawable.retiro,
+				R.drawable.una,
+				R.drawable.marker_violeta,
+				R.drawable.marker,
+				R.drawable.notification,
+				R.drawable.silueta_perro,
+				R.drawable.ic_action_save,
+				R.drawable.retiro,
+				R.drawable.una,
+				R.drawable.retiro,
+				R.drawable.una,
+			};
+		
+		
+		if(protectora==null){
+		
+		
+		for(int i=0;i<mDrawerTitles.length;i++)
+		datos.add(new Lista_entrada(textureArrayWin[i],2, new String[]{ mDrawerTitles[i], null}));
+		
+		
+		if (mDrawerList == null) {
+			ArrayList<String> mItems = new ArrayList<String>();
+			
+			mDrawerList = new Lista_adaptador(this, R.layout.drawer_list_item, datos){
+				@Override
+				public void onEntrada(Object entrada, View view) {
+					if (entrada != null) {
+						TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textcentrado); 
+			            if (texto_superior_entrada != null) 
+			            	texto_superior_entrada.setText(((Lista_entrada) entrada).get_texto(0)); 
+						  
+						/*TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textinferior); 
+						if (texto_inferior_entrada != null)
+							texto_inferior_entrada.setText(((Lista_entrada) entrada).get_textoDebajo()); */
+
+						ImageView imagen_entrada = (ImageView) view.findViewById(R.id.image); 
+						if (imagen_entrada != null)
+							imagen_entrada.setImageResource(((Lista_entrada) entrada).get_idImagen());
+					}
+				}
+			};
+		}
+		
+		}
+			
+		
+		else if(protectora!=null){
+			
 			//cambiar el color, ya se hara cuando se pongan iconos en el drawer
+			for(int i=0;i<sss.length-1;i++)
+				datos.add(new Lista_entrada(textureArrayWin[i],2, new String[]{ sss[i], null}));
+			
+				
+				if (mDrawerList == null) {
+					ArrayList<String> mItems = new ArrayList<String>();
+					
+					mDrawerList = new Lista_adaptador(this, R.layout.drawer_list_item, datos){
+						@Override
+						public void onEntrada(Object entrada, View view) {
+							if (entrada != null) {
+								TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textcentrado); 
+					            if (texto_superior_entrada != null) 
+					            	texto_superior_entrada.setText(((Lista_entrada) entrada).get_texto(0)); 
+								  
+								/*TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textinferior); 
+								if (texto_inferior_entrada != null)
+									texto_inferior_entrada.setText(((Lista_entrada) entrada).get_textoDebajo()); */
+
+								ImageView imagen_entrada = (ImageView) view.findViewById(R.id.image); 
+								if (imagen_entrada != null)
+									imagen_entrada.setImageResource(((Lista_entrada) entrada).get_idImagen());
+							}
+						}
+					};
+				}
 		}
 
 		settings.setOnClickListener(new OnClickListener() {
@@ -152,10 +238,9 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 		// set a custom shadow that overlays the main content when the drawer opens
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 		// set up the drawer's list view with items and click listener
-		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-				R.layout.drawer_list_item, mDrawerTitles));
+		List.setAdapter(mDrawerList);
 
-		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+		List.setOnItemClickListener(new DrawerItemClickListener());
 
 		// enable ActionBar app icon to behave as action to toggle nav drawer
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -187,6 +272,7 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 		if (savedInstanceState == null) {
 			selectItem(0);
 		}
+		
 	}
 
 	@Override
@@ -300,7 +386,7 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 
 			// update selected item and title, then close the drawer
 			if(position<5){
-				mDrawerList.setItemChecked(position, true);
+				List.setItemChecked(position, true);
 				setTitle(mDrawerTitles[position]);}
 		}
 		antFragment=position;
@@ -325,7 +411,7 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 			selectItem(0);
 			System.out.println("ATRAAS");
 		}else{
-			Toast toast = Toast.makeText(this, "Pulsa atr‡s de nuevo para salir", Toast.LENGTH_SHORT);
+			Toast toast = Toast.makeText(this, "Pulsa atrï¿½s de nuevo para salir", Toast.LENGTH_SHORT);
 			toast.show();
 			System.out.println("Mensaje");
 		} 

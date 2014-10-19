@@ -35,14 +35,7 @@ import android.widget.ListView;
 public class TodosPerros extends Activity {
 	
 	private ListView list;
-	private String mTag;
 	private Lista_adaptador mAdapter;
-	private ArrayList<String> mItems;
-	private LayoutInflater mInflater;
-	private int mTotal;
-	private int mPosition;
-
-	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +49,7 @@ public class TodosPerros extends Activity {
 		datos.add(new Lista_entrada(R.drawable.park1, 2,new String[]{ "Idir Ferrahmenta", null}));
 		
 		if (mAdapter == null) {
-			mItems = new ArrayList<String>();
+			new ArrayList<String>();
 			mAdapter = new Lista_adaptador(this, R.layout.list_item_amigos, datos){
 				@Override
 				public void onEntrada(Object entrada, View view) {

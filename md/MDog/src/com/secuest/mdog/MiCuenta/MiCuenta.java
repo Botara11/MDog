@@ -1,23 +1,16 @@
 package com.secuest.mdog.MiCuenta;
 //MiCuen
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.Date;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.Editable;
 import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,10 +26,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
@@ -47,8 +38,6 @@ import com.secuest.mdog.R;
 import com.secuest.mdog.Test;
 import com.secuest.mdog.Logica.Dueno;
 import com.secuest.mdog.Logica.Perro;
-import com.secuest.mdog.Logica.Protectora;
-import com.secuest.mdog.Logica.Raza;
 import com.secuest.mdog.Perfiles.PerfilParque;
 import com.secuest.mdog.Perfiles.PerfilPerroPrivado;
 import com.secuest.mdog.utils.Cache;
@@ -85,20 +74,24 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 
 	private Button boton;
 	private View rootView;
-	private View view;
 	private View VistaListItemPerros;
 	private TabHost mTabHost;
 	private int mCurrentTab;
 	private AsyncCaller async;
 	private Dueno miUser;
-	private boolean showingfirst=true;
 	private String Nombre;
 	private String Ciudad;
+	
+	private Button botonCancelar;
+	private Button botonAceptar;
+	private TableRow TableRowMiCuenta;
+	private EditText newtextNombre;
+	private Button botonEditarPerfil;
+	private ImageView newImagePerfilDueno;
+	private EditText newtextCiudad;
+	
 		
 	private MisPerrosListFragment misPerrosList;
-	private PerfilPerroPrivado PerfilPerro;
-	
-
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -151,13 +144,13 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 				R.anim.bounce); 
 		//************************ANIMACION
 		
-		final Button botonCancelar = (Button) rootView.findViewById(R.id.cancelarMiCuenta);
-		final Button botonAceptar = (Button) rootView.findViewById(R.id.AceptarMiCuenta);
-		final TableRow TableRowMiCuenta = (TableRow) rootView.findViewById(R.id.TableRowMiCuenta);
-		final EditText newtextNombre = (EditText) rootView.findViewById(R.id.NombreDueno);
-		final Button botonEditarPerfil = (Button) rootView.findViewById(R.id.ButtonEditarPerfil);
-		final ImageView newImagePerfilDueno = (ImageView) rootView.findViewById(R.id.ImageViewFotoDueno);
-		final EditText newtextCiudad = (EditText) rootView.findViewById(R.id.textCiudad);
+		botonCancelar = (Button) rootView.findViewById(R.id.cancelarMiCuenta);
+		botonAceptar = (Button) rootView.findViewById(R.id.AceptarMiCuenta);
+		TableRowMiCuenta = (TableRow) rootView.findViewById(R.id.TableRowMiCuenta);
+		newtextNombre = (EditText) rootView.findViewById(R.id.NombreDueno);
+		botonEditarPerfil = (Button) rootView.findViewById(R.id.ButtonEditarPerfil);
+		newImagePerfilDueno = (ImageView) rootView.findViewById(R.id.ImageViewFotoDueno);
+		newtextCiudad = (EditText) rootView.findViewById(R.id.textCiudad);
 		//final Button botonAceptar = (Button) rootView.findViewById(R.id.button_aceptar);
 		
 		Nombre=miUser.getNick();
@@ -367,6 +360,24 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 		if (TAB_PERFIL.equals(tabId)) {
 			async.updateTab(tabId, R.id.tab1);
 			mCurrentTab = 0;
+			newtextNombre.setFocusableInTouchMode(false);
+			newtextNombre.setKeyListener(null);
+			newtextNombre.setBackgroundColor(000000);
+			newtextCiudad.setFocusableInTouchMode(false); 
+			newtextCiudad.setKeyListener(null);
+			newtextCiudad.setBackgroundColor(000000);
+			newImagePerfilDueno.setOnClickListener(null);
+			newImagePerfilDueno.clearAnimation();
+			//botonEditarPerfil.setBackgroundResource(R.drawable.ic_action_edit);
+			botonEditarPerfil.setVisibility(View.VISIBLE);
+			boton.setEnabled(true);
+			boton.setVisibility(View.VISIBLE);
+			TableRowMiCuenta.setVisibility(View.INVISIBLE);
+			newtextNombre.clearAnimation();
+			newtextCiudad.clearAnimation();
+			newtextNombre.setText(Nombre);
+			newtextCiudad.setText(Ciudad);
+			misPerrosList.esconderEliminar();
 			boton.setText("Añadir Perro");
 			boton.setOnClickListener(new OnClickListener() {
 
@@ -384,12 +395,48 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 		if (TAB_WORDS.equals(tabId)) {
 			async.updateTab(tabId, R.id.tab2);
 			mCurrentTab = 1;
+			newtextNombre.setFocusableInTouchMode(false);
+			newtextNombre.setKeyListener(null);
+			newtextNombre.setBackgroundColor(000000);
+			newtextCiudad.setFocusableInTouchMode(false); 
+			newtextCiudad.setKeyListener(null);
+			newtextCiudad.setBackgroundColor(000000);
+			newImagePerfilDueno.setOnClickListener(null);
+			newImagePerfilDueno.clearAnimation();
+			//botonEditarPerfil.setBackgroundResource(R.drawable.ic_action_edit);
+			botonEditarPerfil.setVisibility(View.VISIBLE);
+			boton.setEnabled(true);
+			boton.setVisibility(View.VISIBLE);
+			TableRowMiCuenta.setVisibility(View.INVISIBLE);
+			newtextNombre.clearAnimation();
+			newtextCiudad.clearAnimation();
+			newtextNombre.setText(Nombre);
+			newtextCiudad.setText(Ciudad);
+			misPerrosList.esconderEliminar();
 			boton.setText("Editar");
 			return;
 		}
 		if (TAB_NUMBERS.equals(tabId)) {
 			async.updateTab(tabId, R.id.tab3);
 			mCurrentTab = 2;
+			newtextNombre.setFocusableInTouchMode(false);
+			newtextNombre.setKeyListener(null);
+			newtextNombre.setBackgroundColor(000000);
+			newtextCiudad.setFocusableInTouchMode(false); 
+			newtextCiudad.setKeyListener(null);
+			newtextCiudad.setBackgroundColor(000000);
+			newImagePerfilDueno.setOnClickListener(null);
+			newImagePerfilDueno.clearAnimation();
+			//botonEditarPerfil.setBackgroundResource(R.drawable.ic_action_edit);
+			botonEditarPerfil.setVisibility(View.VISIBLE);
+			boton.setEnabled(true);
+			boton.setVisibility(View.VISIBLE);
+			TableRowMiCuenta.setVisibility(View.INVISIBLE);
+			newtextNombre.clearAnimation();
+			newtextCiudad.clearAnimation();
+			newtextNombre.setText(Nombre);
+			newtextCiudad.setText(Ciudad);
+			misPerrosList.esconderEliminar();
 			boton.setText("Añadir Parque");
 			boton.setOnClickListener(new OnClickListener() {
 
@@ -408,6 +455,24 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 			async.updateTab(tabId, R.id.tab4);
 			boton.setText("Buscar Cita");
 			mCurrentTab = 3;
+			newtextNombre.setFocusableInTouchMode(false);
+			newtextNombre.setKeyListener(null);
+			newtextNombre.setBackgroundColor(000000);
+			newtextCiudad.setFocusableInTouchMode(false); 
+			newtextCiudad.setKeyListener(null);
+			newtextCiudad.setBackgroundColor(000000);
+			newImagePerfilDueno.setOnClickListener(null);
+			newImagePerfilDueno.clearAnimation();
+			//botonEditarPerfil.setBackgroundResource(R.drawable.ic_action_edit);
+			botonEditarPerfil.setVisibility(View.VISIBLE);
+			boton.setEnabled(true);
+			boton.setVisibility(View.VISIBLE);
+			TableRowMiCuenta.setVisibility(View.INVISIBLE);
+			newtextNombre.clearAnimation();
+			newtextCiudad.clearAnimation();
+			newtextNombre.setText(Nombre);
+			newtextCiudad.setText(Ciudad);
+			misPerrosList.esconderEliminar();
 			boton.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View v) {

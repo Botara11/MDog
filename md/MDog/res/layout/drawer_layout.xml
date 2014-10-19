@@ -57,16 +57,7 @@
             android:layout_width="240dp"
             android:layout_height="match_parent" >
 
-            <ScrollView
-                android:id="@+id/scroll_drawer"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
-
-                <LinearLayout
-                    android:layout_width="240dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/dog_prints" >
+            
 
                     <ListView
                         android:id="@+id/left_drawer"
@@ -75,11 +66,11 @@
                         android:layout_gravity="start"
                         android:choiceMode="singleChoice"
                         android:divider="@android:color/transparent"
-                        android:dividerHeight="0dp" />
-                </LinearLayout>
-            </ScrollView>
-
-            <RelativeLayout
+                        android:dividerHeight="0dp" 
+                        android:background="@drawable/dog_prints"
+                        android:paddingBottom="50dp"/>
+                    
+                    <RelativeLayout
                 android:id="@+id/Relative4"
                 android:layout_width="240dp"
                 android:layout_height="50dp"
@@ -91,7 +82,7 @@
                     android:layout_width="200dp"
                     android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@+id/Button"
+                    android:layout_toLeftOf="@+id/settings"
                     android:gravity="center"
                     android:padding="0dip"
                     android:text="Accede o Registrate"
@@ -107,7 +98,11 @@
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_action_settings" />
             </RelativeLayout>
+                
+           
         </RelativeLayout>
+        
     </LinearLayout>
+     
 
 </android.support.v4.widget.DrawerLayout>
