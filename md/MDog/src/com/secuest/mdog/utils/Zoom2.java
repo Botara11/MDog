@@ -7,31 +7,49 @@ import com.secuest.mdog.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.widget.ImageView;
 
-public class ZoomImagen extends Activity {
+public class Zoom2 extends Activity {
 
+	private ImageView img;
+	private Matrix matrix = new Matrix();
+	private float scale = 1f;
+	private ScaleGestureDetector SGD;
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);		
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.zoom_imagen);
-		int resId = getIntent().getIntExtra("id", 0);
-		ImageView a = (ImageView)findViewById(R.id.zoom_view);
-		a.setImageResource(resId);
+		img = (ImageView)findViewById(R.id.zoom_view);
+		SGD = new ScaleGestureDetector(this,new ScaleListener());
 
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	}
 
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		SGD.onTouchEvent(ev);
+		return true;
+	}
+
+	private class ScaleListener extends ScaleGestureDetector.
+	SimpleOnScaleGestureListener {
+		@Override
+		public boolean onScale(ScaleGestureDetector detector) {
+			scale *= detector.getScaleFactor();
+			scale = Math.max(0.1f, Math.min(scale, 5.0f));
+			matrix.setScale(scale, scale);
+			img.setImageMatrix(matrix);
+			return true;
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,8 +69,9 @@ public class ZoomImagen extends Activity {
 
 		switch(item.getItemId()) {
 		case android.R.id.home:
-			finish();
-
-		}
+			finish();}
 		return true;
-	}}
+	}
+
+
+}

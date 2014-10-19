@@ -30,11 +30,8 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.TabHost.TabSpec;
-import android.app.TabActivity;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Bundle;
-import android.widget.TabHost;
+
 
 
 

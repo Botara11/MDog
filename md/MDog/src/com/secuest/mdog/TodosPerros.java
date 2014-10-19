@@ -19,7 +19,6 @@ import android.widget.TextView;
 public class TodosPerros extends Activity {
 	
 	private ListView list;
-	private String mTag;
 	private Lista_adaptador mAdapter;
 	private ArrayList<String> mItems;
 	private LayoutInflater mInflater;

@@ -24,6 +24,7 @@ import com.secuest.mdog.Logica.PostComentario;
 import com.secuest.mdog.utils.Cache;
 import com.secuest.mdog.utils.Lista_adaptador;
 import com.secuest.mdog.utils.Lista_entrada;
+import com.secuest.mdog.utils.Zoom;
 import com.secuest.mdog.utils.ZoomImagen;
 
 public class Muro extends ListFragment {
@@ -52,7 +53,8 @@ public class Muro extends ListFragment {
 		arrayPost.add(post);
 		arrayPost.add(nuevo);
 		arrayPost.add(post);
-
+		
+		//getIntent().getSerializableExtra("MyClass");
 		ArrayList<Lista_entrada> datos = new ArrayList<Lista_entrada>();  
 
 		for(int i=0;i<arrayPost.size();i++)
@@ -95,7 +97,7 @@ public class Muro extends ListFragment {
 						imagen_entrada.setOnClickListener(new OnClickListener() {
 							@Override
 							public void onClick(View v) {
-								Intent u = new Intent(getActivity(),ZoomImagen.class);
+								Intent u = new Intent(getActivity(),Zoom.class);
 								u.putExtra("id", R.drawable.sombra_persona);
 								getActivity().startActivity(u);
 							}});
