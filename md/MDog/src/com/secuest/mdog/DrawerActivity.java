@@ -2,12 +2,14 @@ package com.secuest.mdog;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -30,11 +32,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.drawable.BitmapDrawable;
 
 import com.secuest.mdog.Adopcion.Adopcion;
 import com.secuest.mdog.Amigos.Amigos;
 import com.secuest.mdog.BuscarPerrosCerca.BuscarPerrosCerca;
 import com.secuest.mdog.Citas.Citas;
+import com.secuest.mdog.Logica.Cita;
 import com.secuest.mdog.Logica.Dueno;
 import com.secuest.mdog.Logica.Parque;
 import com.secuest.mdog.Logica.Perro;
@@ -47,10 +51,13 @@ import com.secuest.mdog.Muro.Muro;
 import com.secuest.mdog.Muro.Publicar;
 import com.secuest.mdog.Protectoras.Protectoras;
 import com.secuest.mdog.settings.Settings;
+import com.secuest.mdog.utils.Cache;
 import com.secuest.mdog.utils.MySQL_SingIn;
 //import android.app.Fragment;
 import com.secuest.mdog.utils.RWFile;
+import com.secuest.mdog.utils_MySql.DatabaseHandler;
 import com.secuest.mdog.utils_MySql.UserFunctions;
+import com.secuest.mdog.utils_MySql.uploadImage;
 
 public class DrawerActivity extends FragmentActivity implements DrawerInterface {
 	private static final int 	BUSQ_RAZA 		= 1;
@@ -70,10 +77,12 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 	private CharSequence mTitle;
 	private String[] mDrawerTitles;
 	protected String result;
-	private boolean isProtectora=false;
+	private boolean isProtectora = false;
 	private Protectora protectora;
 	private Dueno miUser;
 	private Fragment fragment;
+	private UserFunctions userFunction;
+	private boolean isUserLoggedIn = false;
 
 
 	@Override
@@ -81,25 +90,35 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.drawer_layout);
 
-		
-		UserFunctions userFunction = new UserFunctions();
+		userFunction = new UserFunctions();
 		System.out.println("esta logueado? ="+userFunction.isUserLoggedIn(getApplicationContext()));
-		
+		isUserLoggedIn=userFunction.isUserLoggedIn(getApplicationContext());
+
+
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerTitles = getResources().getStringArray(R.array.planets_array);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		mDrawerLinear =(LinearLayout)findViewById(R.id.drawer_view);
 		ImageButton settings = (ImageButton) findViewById(R.id.settings);
-		TextView accedeoregistrate = (TextView) findViewById(R.id.accedeoregistrate);
+		final TextView accedeoregistrate = (TextView) findViewById(R.id.accedeoregistrate);
 
+		if(!userFunction.isUserLoggedIn(getApplicationContext()))
+			accedeoregistrate.setText("Accede o Registrate");
+		else
+			accedeoregistrate.setText("Cerrar sesion");
 		accedeoregistrate.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(DrawerActivity.this,Portada.class));
+				if(userFunction.isUserLoggedIn(getApplicationContext())){
+					userFunction.logoutUser(getApplicationContext());
+					accedeoregistrate.setText("Accede o Registrate");
+				}
+				else
+					startActivity(new Intent(DrawerActivity.this,Portada.class));
 			}
 		});
-		
+
 		/*
 		MySQL_SingIn dao = new MySQL_SingIn();
 	    try {
@@ -108,8 +127,8 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 			System.out.println("ERROR: "+e);
 			e.printStackTrace();
 		}
-		*/
-		
+		 */
+
 		/****************************************************************************************************/
 		/****************************************************************************************************/
 		//Protectora Para hacer pruebas y no registrarse cada vez
@@ -120,23 +139,42 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 			isProtectora = true;
 			String[] sss = new String [mDrawerTitles.length+1];
 			for(int i=0;i<mDrawerTitles.length;i++)
-				
+
 				sss[i]=mDrawerTitles[i];
 			sss[mDrawerTitles.length]="MiProtectora";
 			mDrawerTitles=sss;
 			System.out.println(mDrawerTitles.length +"  "+ sss.length	);
 		}
-		
-		
+		if(isUserLoggedIn){
+			DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+			final HashMap<String, String> usuario = db.getUserDetails();
+			System.out.println(usuario.toString());
+			miUser = new Dueno(usuario.get("email"), usuario.get("image"), usuario.get("name"), usuario.get("city"), new ArrayList<Perro>(), new ArrayList<Parque>(), new ArrayList<Cita>(), new ArrayList<Dueno>());
+			if(usuario.get("image")!=null){
+				new Thread(new Runnable() {
+					public void run() {
+						UserFunctions o = new UserFunctions();
+						Drawable dra = o.downloadImage(usuario.get("image"));
+						if(dra!=null){
+							Bitmap bitmap = ((BitmapDrawable)dra).getBitmap();
+							(new Cache()).guardarImagenCache(usuario.get("image"), bitmap, getCacheDir());
+						}
+					}
+				}).start();
+
+
+			}
+		}
+
 		if(getIntent().getSerializableExtra("Dueno")!=null)
 			miUser = (Dueno) getIntent().getSerializableExtra("Dueno");
-		
+
 		/****************************************************************************************************/
 		/****************************************************************************************************/
-		
-		
-		
-		
+
+
+
+
 		mDrawerList.setAdapter(new ArrayAdapter<String>(this,
 				R.layout.drawer_list_item, mDrawerTitles));
 		if(isProtectora){
@@ -253,16 +291,13 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 				args.putInt(Muro.ARG_PLANET_NUMBER, position);
 			}
 			else if (position == 1) {
-
 				fragment = new SelectMapa();
 				args.putInt(SelectMapa.ARG_PLANET_NUMBER, position);
 			}else if (position == 2) {
-
 				fragment = new MiCuenta();
 				args.putInt(MiCuenta.ARG_PLANET_NUMBER, position);
 				args.putSerializable("Dueno", miUser);
 			}else if (position == 3) {
-
 				fragment = new Amigos();
 				args.putInt(Amigos.ARG_PLANET_NUMBER, position);
 			}else  if (position==4){
@@ -286,22 +321,26 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 				args.putInt(Planeta.ARG_PLANET_NUMBER, count);
 			}
 
+			if(!isUserLoggedIn && position!=0){
+				Toast toast = Toast.makeText(this, "Por favor REGISTRATE o INICIA SESION", Toast.LENGTH_SHORT);
+				toast.show();
+			}else{
+				Fragment prub = getSupportFragmentManager().findFragmentById(R.id.mapi);
+				if(prub!=null)
+					getSupportFragmentManager().beginTransaction().
+					remove(getSupportFragmentManager().findFragmentById(R.id.mapi)).commit();
+				System.out.println("ELIMINAR MAP count="+count);
 
-			Fragment prub = getSupportFragmentManager().findFragmentById(R.id.mapi);
-			if(prub!=null)
-				getSupportFragmentManager().beginTransaction().
-				remove(getSupportFragmentManager().findFragmentById(R.id.mapi)).commit();
-			System.out.println("ELIMINAR MAP count="+count);
-
-			fragment.setArguments(args);
-			FragmentManager fmanager = getSupportFragmentManager();
-			fmanager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+				fragment.setArguments(args);
+				FragmentManager fmanager = getSupportFragmentManager();
+				fmanager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
 
-			// update selected item and title, then close the drawer
-			if(position<5){
-				mDrawerList.setItemChecked(position, true);
-				setTitle(mDrawerTitles[position]);}
+				// update selected item and title, then close the drawer
+				if(position<5){
+					mDrawerList.setItemChecked(position, true);
+					setTitle(mDrawerTitles[position]);}
+			}
 		}
 		antFragment=position;
 		mDrawerLayout.closeDrawer(mDrawerLinear); 
@@ -353,7 +392,6 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 				b = ((Button)findViewById(R.id.raza));
 				if(b!=null)
 					b.setText(result);
-
 				System.out.println(result);
 			}
 			if (resultCode == RESULT_CANCELED) {
@@ -376,6 +414,10 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 				Bitmap selectedBitmap = extras.getParcelable("data");
 				ImageView img = (ImageView) this.findViewById(R.id.ImageViewFotoDueno);
 				img.setImageBitmap(selectedBitmap);
+				DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+				HashMap<String, String> usuario = db.getUserDetails(); 
+				(new Cache()).guardarImagenCache(usuario.get("uid"),selectedBitmap, this.getCacheDir());
+				((MiCuenta) fragment).changImage=true;
 			}
 			break;
 		case FOTO_GALERIA:
@@ -396,7 +438,7 @@ public class DrawerActivity extends FragmentActivity implements DrawerInterface 
 			}
 			break;
 		}
-		 
+
 	}//onActivityResult
 
 	/**

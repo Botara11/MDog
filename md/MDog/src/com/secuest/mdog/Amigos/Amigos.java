@@ -11,39 +11,14 @@ import android.widget.TabHost;
 import com.secuest.mdog.R;
 import com.secuest.mdog.Test;
 import com.secuest.mdog.Logica.Dueno;
-import com.secuest.mdog.MiCuenta.CitasListFragment;
-import com.secuest.mdog.MiCuenta.MisPerrosListFragment;
-import com.secuest.mdog.MiCuenta.ParquesListFragment;
-import com.secuest.mdog.R.array;
-import com.secuest.mdog.R.id;
-import com.secuest.mdog.R.layout;
-import com.secuest.mdog.R.string;
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 //import android.os.Bundle;
 //import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 import java.util.ArrayList;
-import java.util.List;
-import android.app.ProgressDialog;
-
-import android.view.Window;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 
 

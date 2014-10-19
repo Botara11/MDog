@@ -36,10 +36,8 @@ public class Cache {
 	
 
 	public void guardarImagenCache(String nombreImagen,Bitmap mutableBitmap,File cacheDir){
-
 		
 		File f = new File(cacheDir, nombreImagen); // (IDdueno+num d perro)
-		if(!f.exists()){
 			System.out.println("Direccion: "+f.getAbsolutePath());
 
 			try {
@@ -47,10 +45,10 @@ public class Cache {
 				mutableBitmap.compress(Bitmap.CompressFormat.JPEG,100, out);
 				out.flush();
 				out.close();
+				System.out.println("Se ha guardado la imagen en cache");
 
 			} catch (FileNotFoundException e) {e.printStackTrace();
 			} catch (IOException e) {e.printStackTrace();}
-		}
 	}
 
 }

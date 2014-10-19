@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.Date;
+import java.util.HashMap;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -53,6 +55,8 @@ import com.secuest.mdog.Perfiles.PerfilParque;
 import com.secuest.mdog.Perfiles.PerfilPerroPrivado;
 import com.secuest.mdog.utils.Cache;
 import com.secuest.mdog.utils.RWFile;
+import com.secuest.mdog.utils_MySql.DatabaseHandler;
+import com.secuest.mdog.utils_MySql.UserFunctions;
 //import android.os.Bundle;
 //import android.support.v4.app.Fragment;
 //import android.view.LayoutInflater;
@@ -98,6 +102,10 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 	private MisPerrosListFragment misPerrosList;
 	private PerfilPerroPrivado PerfilPerro;
 	
+	public boolean changImage = false; 
+	
+	public boolean bool; //Descarga de imagen
+	public Drawable dra;//Descarga de imagen
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -128,17 +136,16 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 		
 
 		//************************BASE DE DATOS
+		
 		File cacheDir = getActivity().getBaseContext().getCacheDir();
 		Test test = new Test(getResources(),cacheDir);
 		test.Load();
 		//miUser = test.jes;
-		
 		Dueno dueno = (Dueno) getArguments().getSerializable("Dueno");
 		if(dueno != null)
 			miUser=dueno;
 		else
 			miUser = test.kate;
-		
 		final RWFile rw = new RWFile();
 		rw.guardarDueno(test.kate);
 		
@@ -162,15 +169,29 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 		
 		Nombre=miUser.getNick();
 		Ciudad=miUser.getCiudad();
-		
-		System.out.println("Imagen:"+miUser.getImage().toString()+":");
-		if(!miUser.getImage().toString().equals(""))
+		DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
+		HashMap<String, String> usuario = db.getUserDetails();
+		System.out.println("Imagen:"+usuario.get("uid")+":");
+		if(miUser.getImage()!=null)
 			try {
-				newImagePerfilDueno.setImageBitmap(new Cache().cargarImagen(miUser.getImage(), getActivity().getBaseContext()));
+				newImagePerfilDueno.setImageBitmap(new Cache().cargarImagen(usuario.get("uid"), getActivity().getBaseContext()));
 			} catch (FileNotFoundException e) {
-				newImagePerfilDueno.setImageResource(R.drawable.sombra_perro);
+				
+				new Thread(new Runnable() {
+					public void run() {
+						UserFunctions us = new UserFunctions();
+						dra = us.downloadImage(miUser.getImage());
+						bool=false;
+					}
+				}).start();
+				while(bool){ try {Thread.sleep(100);} catch (InterruptedException e2) {e2.printStackTrace();}}
+				newImagePerfilDueno.setImageDrawable(dra);
+				
 				e.printStackTrace();
 			}
+		else{
+			newImagePerfilDueno.setImageResource(R.drawable.sombra_perro);
+		}
 		newtextNombre.setText(miUser.getNick());
 		newtextCiudad.setText(miUser.getCiudad());
 		
@@ -214,8 +235,28 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 
 
 		botonAceptar.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View v) {
+				
+				/****IMAGEN******/
+				if(changImage==true){
+				new Thread(new Runnable() {
+					public void run() {
+						DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
+						HashMap<String, String> usuario = db.getUserDetails();
+						UserFunctions us = new UserFunctions();
+						us.uploadImage(usuario.get("email"), usuario.get("password"), usuario.get("uid"), null, usuario.get("uid"), getActivity().getBaseContext());
+						System.out.println(usuario.toString());
+					}}).start();
+				changImage=false;
+				}
+				DatabaseHandler db = new DatabaseHandler(getActivity().getApplicationContext());
+				HashMap<String, String> usuario = db.getUserDetails();
+				db.setUserImage(usuario.get("uid"));
+				db.setUserNameCity(usuario.get("uid"), newtextNombre.getText().toString(), newtextCiudad.getText().toString());
+				UserFunctions us = new UserFunctions();
+				us.updateUser(newtextNombre.getText().toString(),usuario.get("email"),usuario.get("email"),usuario.get("password"),usuario.get("password"),newtextCiudad.getText().toString());
+				
+				
 				newtextNombre.setFocusableInTouchMode(false);
 				newtextNombre.setKeyListener(null);
 				newtextNombre.setBackgroundColor(000000);
@@ -231,9 +272,11 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 				TableRowMiCuenta.setVisibility(View.INVISIBLE);
 				newtextNombre.clearAnimation();
 				newtextCiudad.clearAnimation();
+				
 				miUser.setNick(newtextNombre.getText().toString());
 				miUser.setCiudad(newtextCiudad.getText().toString());
 				rw.guardarDueno(miUser);
+				
 				final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 			    imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 			    misPerrosList.esconderEliminar();
@@ -244,8 +287,8 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 
 		
 		botonCancelar.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View v) {
+				
 				newtextNombre.setFocusableInTouchMode(false);
 				newtextNombre.setKeyListener(null);
 				newtextNombre.setBackgroundColor(000000);
@@ -277,21 +320,14 @@ public class MiCuenta extends Fragment implements OnTabChangeListener, OnMenuIte
 		
 		
 		newtextNombre.setOnTouchListener(new OnTouchListener() {
-
-
 			@SuppressLint("ClickableViewAccessibility") @Override
 			public boolean onTouch(View v, MotionEvent event) {
-				
-				
 				newtextNombre.clearAnimation();
-				
 				return false;
 			}
 		});
 
 		newtextCiudad.setOnTouchListener(new OnTouchListener() {
-
-
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				newtextCiudad.clearAnimation();

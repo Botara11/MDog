@@ -1,75 +1,37 @@
 package com.secuest.mdog.BuscarPerrosCerca;
 
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.secuest.mdog.Logica.Raza;
-import com.secuest.mdog.MiCuenta.MiCuenta;
-import com.secuest.mdog.utils.Lista_entrada;
-
-import android.sax.TextElementListener;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ListView;
-import java.util.ArrayList;
-import com.secuest.mdog.R;
-import com.secuest.mdog.utils.Lista_adaptador;
-import com.secuest.mdog.utils.Lista_entrada;
-
-import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-//import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.secuest.mdog.R;
+import com.secuest.mdog.Logica.Raza;
 
 public class BusqRazas extends Activity {
 	private ListView list;
-	private String mTag;
-	private Lista_adaptador mAdapter;
-	private ArrayList<String> mItems;
-	private LayoutInflater mInflater;
-	private int mTotal;
-	private int mPosition;
 	private EditText filtro;
 	private SearchableAdapter adapter;
-	private Lista_adaptador uu;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

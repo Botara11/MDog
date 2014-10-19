@@ -1,7 +1,6 @@
 package com.secuest.mdog.settings;
 
 import com.secuest.mdog.DrawerActivity;
-import com.secuest.mdog.InicioSesion;
 import com.secuest.mdog.R;
 
 import android.app.ActionBar;
@@ -12,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 
 

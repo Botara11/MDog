@@ -133,6 +133,8 @@ public class Publicar extends Activity {
 		case FOTO_CAMARA:
 			if(resultCode == RESULT_OK){  
 				Uri selectedImage = imageReturnedIntent.getData();
+				
+				
 				String[] filePathColumn = {MediaStore.Images.Media.DATA};
 				Cursor cursor = getContentResolver().query(
 						selectedImage, filePathColumn, null, null, null);
@@ -145,7 +147,6 @@ public class Publicar extends Activity {
 				a=a/yourSelectedImage.getWidth();
 				img.setImageBitmap(Bitmap.createScaledBitmap(yourSelectedImage, img.getWidth(), a, false));
 	            //img.setImageBitmap(yourSelectedImage);
-				
 				img.setVisibility(View.VISIBLE);
 				b.setVisibility(View.VISIBLE);
 			}

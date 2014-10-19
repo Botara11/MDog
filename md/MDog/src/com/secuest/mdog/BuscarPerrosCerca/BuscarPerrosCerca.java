@@ -23,7 +23,6 @@ public class BuscarPerrosCerca extends Fragment {
 
 	private static final int BUSQ_RAZA = 1;
 	public static final String ARG_PLANET_NUMBER = "planet_number";
-	private static final String TAG = "FragmentTabs";
 	public static final String TAB_WORDS = "Mis perros";
 	
 
@@ -31,7 +30,6 @@ public class BuscarPerrosCerca extends Fragment {
 	public android.support.v4.app.FragmentTransaction ft;
 
 	private View rootView;
-	private int mCurrentTab;
 	private AsyncCaller async;
 	private Spinner genero, distancia;
 	private Button boton;
@@ -135,13 +133,7 @@ public class BuscarPerrosCerca extends Fragment {
 	private class AsyncCaller extends AsyncTask<Void, Void, Void>
 	{
 
-		private String tabId;
-		private int placeholder;
-
 		private void updateTab(String tabId, int placeholder) {
-			this.tabId=tabId;
-			this.placeholder=placeholder;
-
 			doInBackground();
 
 		}

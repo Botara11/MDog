@@ -42,7 +42,9 @@ public class RegistroCorreo extends Activity {
 	private static String KEY_UID = "uid";
 	private static String KEY_NAME = "name";
 	private static String KEY_EMAIL = "email";
+	private static String KEY_PASS = "password";
 	private static String KEY_CREATED_AT = "created_at";
+	private static final String KEY_UPDATED_AT = "updated_at";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,16 +79,9 @@ public class RegistroCorreo extends Activity {
 				String name = nombre.getText().toString();
 				String mail = email.getText().toString();
 				String password = pass1.getText().toString();
-				
-					Drawable d = getResources().getDrawable(R.drawable.teckel); 
-					Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
-					ByteArrayOutputStream stream = new ByteArrayOutputStream();
-					bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-					byte[] bitmapdata = stream.toByteArray();
-					String base64String = Base64.encodeToString(bitmapdata,Base64.DEFAULT);
-				System.out.println("Enviado a Registro:  "+base64String);
+				String city = ciudad.getText().toString();
 				UserFunctions userFunction = new UserFunctions();
-				JSONObject json = userFunction.registerUser(name, mail, password,base64String);
+				JSONObject json = userFunction.registerUser(name, mail, password,city);
 				
 				// check for login response
 				try {
@@ -101,9 +96,9 @@ public class RegistroCorreo extends Activity {
 							
 							// Clear all previous data in database
 							userFunction.logoutUser(getApplicationContext());
-							db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_EMAIL), json.getString(KEY_UID), json_user.getString(KEY_CREATED_AT));						
+							db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_EMAIL),pass1.getText().toString(),  json.getString("city"),null, json.getString(KEY_UID), json_user.getString(KEY_CREATED_AT), json_user.getString(KEY_UPDATED_AT));						
 							// Launch Dashboard Screen
-							finish();
+							startActivity(new Intent(RegistroCorreo.this, DrawerActivity.class));
 						}else{
 							System.out.println("Un peq error json");
 						}
@@ -115,7 +110,7 @@ public class RegistroCorreo extends Activity {
 				
 				
 				Intent i =new Intent(RegistroCorreo.this,DrawerActivity.class);
-				i.putExtra("Dueno", (new Dueno("", "", nombre.getText().toString(), ciudad.getText().toString(), (new ArrayList<Perro>()), (new ArrayList<Parque>()), (new ArrayList<Cita>()),(new ArrayList<Dueno>()) )));
+				i.putExtra("Dueno", (new Dueno(email.getText().toString(), null, nombre.getText().toString(), ciudad.getText().toString(), (new ArrayList<Perro>()), (new ArrayList<Parque>()), (new ArrayList<Cita>()),(new ArrayList<Dueno>()) )));
 				i.putExtra("Email",email.getText().toString());
 				i.putExtra("Pass",pass1.getText().toString());
 				startActivity(i);

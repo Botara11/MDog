@@ -6,8 +6,6 @@ import com.secuest.mdog.R;
 import com.secuest.mdog.Test;
 import com.secuest.mdog.BuscarPerrosCerca.BusqRazas;
 import com.secuest.mdog.Logica.Perro;
-import com.secuest.mdog.Logica.Raza;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,21 +22,18 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Adopcion extends Fragment {
 
 	public static final String ARG_PLANET_NUMBER = "planet_number";
-	private static final String TAG = "FragmentTabs";
 	public static final String TAB_WORDS = "Mis perros";
 	
 	public FragmentManager fm;
 	public android.support.v4.app.FragmentTransaction ft;
 
 	private View rootView;
-	private int mCurrentTab;
 	private AsyncCaller async;
 	private Spinner genero;
 	private Button boton;
@@ -142,13 +137,7 @@ public class Adopcion extends Fragment {
 	private class AsyncCaller extends AsyncTask<Void, Void, Void>
 	{
 
-		private String tabId;
-		private int placeholder;
-
 		private void updateTab(String tabId, int placeholder) {
-			this.tabId=tabId;
-			this.placeholder=placeholder;
-
 			doInBackground();
 
 		}

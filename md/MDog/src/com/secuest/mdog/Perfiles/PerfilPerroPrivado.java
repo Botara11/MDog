@@ -3,13 +3,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
+import com.google.android.gms.internal.im;
 import com.secuest.mdog.R;
 import com.secuest.mdog.BuscarPerrosCerca.BusqRazas;
 import com.secuest.mdog.Logica.Perro;
 import com.secuest.mdog.Logica.Raza;
 import com.secuest.mdog.utils.Cache;
+import com.secuest.mdog.utils_MySql.DatabaseHandler;
+import com.secuest.mdog.utils_MySql.UserFunctions;
+import com.secuest.mdog.utils_MySql.uploadImage;
 
+import android.R.drawable;
 import android.text.method.KeyListener;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -18,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -101,7 +108,7 @@ public class PerfilPerroPrivado extends Activity  implements OnMenuItemClickList
 		final Animation animFadein;
 		animFadein = AnimationUtils.loadAnimation(getApplicationContext(),
 				R.anim.bounce);    
-
+		
 		final EditText newtextNombre = (EditText) findViewById(R.id.Nombre);
 		final EditText newtextAficiones = (EditText) findViewById(R.id.Aficiones);
 		final EditText newtextPersonalidad = (EditText) findViewById(R.id.Personalidad);
@@ -359,8 +366,6 @@ public class PerfilPerroPrivado extends Activity  implements OnMenuItemClickList
 
 			public void onClick(View v) {
 
-
-
 				//newTextEdad.setKeyListener(originalKeyListener);
 				//newTextEdad.setFocusable(true);
 				newtextNombre.setKeyListener(originalKeyListener);
@@ -397,6 +402,15 @@ public class PerfilPerroPrivado extends Activity  implements OnMenuItemClickList
 		botonAceptar.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				
+				/****IMAGEN******/
+				DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+				HashMap<String, String> usuario = db.getUserDetails();
+				UserFunctions us = new UserFunctions();
+				usuario.get("email");
+				us.uploadImage(usuario.get("email"), usuario.get("password"), "mochaIMAGEN", null, nombreImagenPerfil, getBaseContext());
+				System.out.println("SUBIDA DE IMAGEN");
+				
 				if(newtextRaza.getText().toString().equals("raza")){
 					Toast toast = Toast.makeText(getApplication(), "Seleccione una RAZA", Toast.LENGTH_SHORT);
 					toast.show();
@@ -463,6 +477,10 @@ public class PerfilPerroPrivado extends Activity  implements OnMenuItemClickList
 		botonCancelar.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				
+				ImageView img = (ImageView) findViewById(R.id.ImageViewFotoPeRRo);
+				img.setImageDrawable(getResources().getDrawable(R.drawable.sombra_persona));
+				
 				if(IS_ANADIR_PERRO){
 					finish();
 				}
@@ -717,8 +735,8 @@ public class PerfilPerroPrivado extends Activity  implements OnMenuItemClickList
 				img.setImageBitmap(selectedBitmap);
 				/****************GUARDAR EN BASE DE DATOS*****************/
 				/****************GUARDAR EN BASE DE DATOS*****************/
-				(new Cache()).guardarImagenCache( "1234",selectedBitmap, this.getCacheDir());
-				nombreImagenPerfil="1234";
+				(new Cache()).guardarImagenCache( "temp",selectedBitmap, this.getCacheDir());
+				nombreImagenPerfil="temp";
 			}
 			break;
 		case FOTO_GALERIA:

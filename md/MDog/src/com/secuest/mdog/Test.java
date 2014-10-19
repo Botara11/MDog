@@ -107,7 +107,7 @@ public class Test extends Activity {
 		post = new Post("p100",kate, "Mirar la foto de mi pequeque mujajajajaj", new GregorianCalendar  (2014, 8, 16, 23, 12), "100", 9, comentarios);
 			 
 		 
-		
+		guardarImagenCache(R.drawable.hola,"hola");
 		guardarImagenCache(R.drawable.perro3,"100");   		//PERRO
 		guardarImagenCache(R.drawable.hask,"101");			//PERRO
 		guardarImagenCache(R.drawable.una, "10");			//DUENO

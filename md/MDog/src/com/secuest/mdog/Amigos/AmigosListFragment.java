@@ -45,9 +45,6 @@ LoaderCallbacks<Void> {
 
 	private static final int SLEEP = 1000;
 
-	private final int wordBarColor = R.color.word_bar;
-	private final int numberBarColor = R.color.number_bar;
-
 	public AmigosListFragment(String tag, ArrayList<Dueno> amigos) {
 		mTag = tag;
 		mTotal = Amigos.TAB_AMIGOS.equals(mTag) ? WORDS.length
